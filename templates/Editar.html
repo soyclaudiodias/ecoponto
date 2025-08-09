@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar | EcoPonto</title>
+
+  <!-- Ícone e fontes -->
+  <link rel="icon" href="{{ url_for('static', filename='assets/logo2.png') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- CSS e Script -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/Editar.css') }}">
+  <script src="{{ url_for('static', filename='script/Editar.js') }}" defer></script>
+  <script src="https://unpkg.com/imask"></script>
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <a class="logo" href="/">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logotipo">
+    </a>
+    <div class="back">
+      <a class="back-link" href="/consultar">
+        <img src="{{ url_for('static', filename='assets/seta.png') }}" alt="Voltar">
+        Voltar para pesquisa
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Editar ponto de coleta</h1>
+
+    <!-- Upload de imagem -->
+    <section>
+      {% set imagem_padrao = ponto.imagem == 'imagem_padrao.png' %}
+      {% set imagem_url = url_for('static', filename='assets/imagem_padrao.png') if imagem_padrao else url_for('uploaded_file', filename=ponto.imagem) %}
+      <label for="fileInput">
+        <div class="upload sem-borda" id="uploadDiv" style="background-image: url('{{ imagem_url }}');">
+          <img id="preview" src="{{ url_for('static', filename='assets/upload.png') }}" style="display: none;" alt="Carregar imagem">
+          <p id="previewText" style="display: none;">Imagem do estabelecimento</p>
+          <button type="button" id="removeImageBtn" class="remove-image">&times;</button>
+        </div>
+      </label>
+      <input type="file" id="fileInput" name="imagem" accept="image/*" hidden>
+      <input type="hidden" id="imagemRemovida" name="imagemRemovida" value="false">
+    </section>
+
+    <!-- Dados -->
+    <section>
+      <h2>Dados</h2>
+      <label for="nome">Nome da entidade</label>
+      <input type="text" id="nome" class="input-custom" value="{{ ponto.nome }}">
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" class="input-custom" value="{{ ponto.email }}">
+
+      <label for="whatsapp">WhatsApp</label>
+      <input type="text" id="whatsapp" class="input-custom" value="{{ ponto.whatsapp }}">
+    </section>
+
+    <!-- Endereço e mapa -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Endereço</h2>
+        <small>Selecione no mapa</small>
+      </div>
+
+      <div id="map"></div>
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+      <div class="form-row">
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" class="input-custom" value="{{ ponto.cep }}">
+      </div>
+
+      <div class="form-row">
+        <label for="complemento">Complemento</label>
+        <input type="text" id="complemento" class="input-custom" value="{{ ponto.complemento }}">
+      </div>
+
+      <!-- Campo oculto para armazenar o endereço -->
+      <input type="hidden" id="endereco" name="endereco" value="{{ ponto.endereco or '' }}">
+    </section>
+
+    <!-- Itens de coleta -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Ítens de coleta</h2>
+        <small>Selecione um ou mais</small>
+      </div>
+
+      <div class="items-grid">
+      <label class="item">
+        <input type="checkbox" name="reciclaveis" {% if ponto.reciclaveis %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/residuos_reciclavel.png') }}" alt="Resíduos Recicláveis">
+        <span>Recicláveis</span>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" name="organicos" {% if ponto.organicos %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/residuos_organicos.png') }}" alt="Resíduos Orgânicos">
+        <span>Orgânicos</span>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" name="eletronicos" {% if ponto.eletronicos %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/residuos_eletronicos.png') }}" alt="Resíduos Eletrônicos">
+        <span>Eletrônicos</span>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" name="pilhas_baterias" {% if ponto.pilhas_baterias %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/pilhas_baterias.png') }}" alt="Pilhas e Baterias">
+        <span>Pilhas<br>e Baterias</span>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" name="oleo_cozinha" {% if ponto.oleo_cozinha %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/oleo_de_cozinha.png') }}" alt="Óleo de Cozinha">
+        <span>Óleo de<br>Cozinha</span>
+      </label>
+
+      <label class="item">
+        <input type="checkbox" name="lampadas" {% if ponto.lampadas %}checked{% endif %}>
+        <img src="{{ url_for('static', filename='assets/lampadas.png') }}" alt="Lâmpadas">
+        <span>Lâmpadas</span>
+      </label>
+    </div>
+    </section>
+
+    <!-- Botões -->
+    <button class="button-submit">Alterar</button>
+    <button id="btn-deletar" data-id="{{ ponto.id }}" class="button-delete">Deletar</button>
+  </div>
+
+  <!-- Modal de sucesso -->
+  <div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+      <img src="{{ url_for('static', filename='assets/check.png') }}" alt="Check" />
+      <p id="success-message">Mensagem aqui</p>
+    </div>
+  </div>
+</body>

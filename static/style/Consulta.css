@@ -1,0 +1,147 @@
+/* ========================
+   Reset padrão
+   ======================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================
+   Estilo global
+   ======================== */
+body {
+  margin: 30px 200px;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f2f3f8;
+  color: #322153;
+}
+
+/* ========================
+   Cabeçalho (logo + voltar)
+   ======================== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px auto;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2FB86E;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 200px;
+  height: 40px;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.back img {
+  width: 16px;
+  height: auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #322153;
+}
+
+/* ========================
+   Área principal
+   ======================== */
+.main {
+  padding: 0rem 2rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6c6c80;
+  margin-bottom: 2rem;
+}
+
+/* ========================
+   Cards dos pontos
+   ======================== */
+.cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+  color: #322153;
+  margin: 1rem;
+}
+
+.card .category {
+  font-size: 1rem;
+  color: #34cb79;
+  margin: 0 1rem 1rem;
+  line-height: 1.4;
+}
+
+.card .address {
+  font-size: 0.9rem;
+  color: #6c6c80;
+  margin: 0 1rem;
+}
+
+/* ========================
+   Barra de pesquisa
+   ======================== */
+label {
+  width: 88px;
+  height: 16px;
+  color: #6C6C80;
+  font-size: 14px;
+  font-family: Roboto;
+  font-weight: 400;
+}
+
+input[type="text"] {
+  width: 96%;
+  padding: 12px;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
+  background: #ffffff;
+  margin-bottom: 16px;
+}
+
+nav {
+  padding: 1rem 2rem 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}

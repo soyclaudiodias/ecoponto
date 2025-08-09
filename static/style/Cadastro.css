@@ -1,0 +1,328 @@
+/* ========================
+   BASE
+   ======================== */
+body {
+  margin: 30px 200px;
+  padding: 0 20px;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f2f3f8;
+  color: #322153;
+}
+
+/* ========================
+   TIPOGRAFIA
+   ======================== */
+h1 {
+  max-width: 400px;
+  margin: 40px 0px;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+/* ========================
+   ESTRUTURA GERAL
+   ======================== */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+/* ========================
+   HEADER
+   ======================== */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px auto;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2FB86E;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 200px;
+  height: 40px;
+}
+
+/* ========================
+   VOLTAR / BACK LINK
+   ======================== */
+.back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.back img {
+  width: 16px;
+  height: auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #322153;
+}
+
+/* ========================
+   FORMULÁRIO
+   ======================== */
+section {
+  margin-top: 30px;
+}
+
+label {
+  width: 88px;
+  height: 16px;
+  color: #6C6C80;
+  font-size: 14px;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 96%;
+  padding: 12px;
+  border: 1px solid #dcdce6;
+  border-radius: 8px;
+  background: #f0f0f5;
+  margin-bottom: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="time"]:focus {
+  border: 2px solid #2FB86E;
+  outline: none;
+}
+
+.input-custom {
+  width: 608px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: #F0F0F5;
+  margin-bottom: 16px;
+  font-size: 16px;
+  color: #322153;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ========================
+   BOTÃO
+   ======================== */
+.button-submit {
+  background: #34CB79;
+  color: white;
+  font-weight: bold;
+  padding: 16px;
+  width: 266px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: block;
+  margin: 40px auto 0;
+}
+
+.button-submit:hover {
+  background: #2FB86E;
+}
+
+/* ========================
+   MAPA
+   ======================== */
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* ========================
+   UPLOAD DE IMAGEM
+   ======================== */
+.remove-image {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+  display: none;
+}
+
+.upload {
+  position: relative;
+  border: 2px dashed #2FB86E !important;
+  border-radius: 8px;
+  background: #e6f7ec;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #322153;
+  font-weight: 500;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ccc;
+}
+
+.upload img {
+  width: 24px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.sem-borda {
+  border: none !important;
+}
+
+/* ========================
+   GRADE DE ITENS
+   ======================== */
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.item {
+  background: #e6f7ec;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 64px 48px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item:hover {
+  border: 2px solid #2FB86E;
+}
+
+.item.selected {
+  border: 2px solid #2FB86E;
+  background-color: #f0fff5;
+}
+
+.item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.item span {
+  display: block;
+  margin-top: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ========================
+   CHECKBOX
+   ======================== */
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+.item input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ========================
+   MODAL
+   ======================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content,
+.confirm-content {
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  color: #000 !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  width: 320px;
+}
+
+.modal-content img {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.modal-content {
+  text-align: center;
+  font-size: 24px;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}

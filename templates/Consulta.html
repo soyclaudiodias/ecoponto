@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta | EcoPonto</title>
+
+  <!-- Ícone da aba -->
+  <link rel="icon" type="image/x-icon" href="../static/assets/logo2.png">
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Estilo da página -->
+  <link rel="stylesheet" href="../static/style/Consulta.css">
+
+  <!-- Script da página -->
+  <script defer src="../static/script/Consulta.js"></script>
+</head>
+<body>
+
+  <!-- Cabeçalho com logo e botão de voltar -->
+  <header>
+    <a class="logo" href="/">
+      <img src="../static/assets/logo.png" alt="Logotipo">
+    </a>
+
+    <div class="back">
+      <a class="back-link" href="../">
+        <img src="../static/assets/seta.png" alt="Voltar">
+        Voltar para home
+      </a>
+    </div>
+  </header>
+
+  <!-- Barra de pesquisa -->
+  <nav>
+    <label for="nome">Filtro de pesquisa</label>
+    <input type="text" id="nome" class="input-custom" placeholder="Buscar ponto por nome...">
+    <p class="subtitle"><strong id="total-pontos">0 pontos</strong> encontrados</p>
+  </nav>
+
+  <!-- Área principal onde aparecem os cartões -->
+  <main class="main">
+    <section class="cards" id="cards-container">
+      <!-- Cards inseridos dinamicamente via JavaScript -->
+    </section>
+  </main>
+
+</body>
+</html>

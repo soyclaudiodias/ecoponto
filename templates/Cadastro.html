@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro | EcoPonto</title>
+
+  <!-- Ícone da aba -->
+  <link rel="icon" type="image/x-icon" href="../static/assets/logo2.png">
+
+  <!-- Fonte Roboto do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Estilo e scripts -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/Cadastro.css') }}">
+  <script src="{{ url_for('static', filename='script/Cadastro.js') }}"></script>
+  <script src="https://unpkg.com/imask"></script>
+</head>
+
+<body>
+
+  <!-- Cabeçalho com logo e botão de voltar -->
+  <header>
+    <a class="logo" href="/">
+      <img src="../static/assets/logo.png" alt="Logotipo">
+    </a>
+    <div class="back">
+      <a class="back-link" href="../">
+        <img src="./static/assets/seta.png" alt="Voltar">
+        Voltar para home
+      </a>
+    </div>
+  </header>
+
+  <!-- Container principal do formulário -->
+  <div class="container">
+    <h1>Cadastro do ponto de coleta</h1>
+
+    <!-- Formulário de envio de dados -->
+    <form action="/cadastrar" method="POST" enctype="multipart/form-data">
+
+      <!-- Upload da imagem do ponto -->
+      <section>
+        <label for="fileInput">
+          <div class="upload" id="uploadDiv" style="cursor: pointer;">
+            <button type="button" id="removeImageBtn" class="remove-image" style="display: none;">&times;</button>
+            <img id="preview" src="../static/assets/upload.png" alt="Carregar imagem" />
+            <p id="previewText">Imagem do estabelecimento</p>
+          </div>
+        </label>
+        <input type="file" id="fileInput" name="imagem" accept="image/*" style="display: none;">
+      </section>
+
+      <!-- Dados da entidade -->
+      <section>
+        <div>
+          <h2>Dados</h2>
+
+          <label for="nome">Nome da entidade</label>
+          <input type="text" id="nome" name="nome" class="input-custom" required>
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" class="input-custom" required>
+
+          <label for="whatsapp">WhatsApp</label>
+          <input type="text" id="whatsapp" name="whatsapp" class="input-custom" required>
+        </div>
+      </section>
+
+      <!-- Endereço com seleção no mapa -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>Endereço</h2>
+          <small>Selecione o endereço no mapa</small>
+        </div>
+
+        <!-- Mapa com Leaflet.js -->
+        <div id="map" style="background-color:#f0f0f5"></div>
+
+        <!-- Folhas de estilo e scripts do Leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+                integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+        <!-- Campos complementares -->
+        <div class="form-row">
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" name="cep" class="input-custom">
+        </div>
+
+        <div class="form-row">
+          <label for="complemento">Complemento</label>
+          <input type="text" id="complemento" name="complemento" class="input-custom">
+        </div>
+      </section>
+
+      <!-- Itens de coleta selecionáveis -->
+      <section>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h2>Ítens de coleta</h2>
+          <small>Selecione um ou mais ítens abaixo</small>
+        </div>
+
+        <div class="items-grid">
+          <label class="item">
+            <input type="checkbox" name="reciclaveis">
+            <img src="{{ url_for('static', filename='assets/residuos_reciclavel.png') }}" alt="Resíduos Recicláveis">
+            <span>Recicláveis</span>
+          </label>
+
+          <label class="item">
+            <input type="checkbox" name="organicos">
+            <img src="{{ url_for('static', filename='assets/residuos_organicos.png') }}" alt="Resíduos Orgânicos">
+            <span>Orgânicos</span>
+          </label>
+
+          <label class="item">
+            <input type="checkbox" name="eletronicos">
+            <img src="{{ url_for('static', filename='assets/residuos_eletronicos.png') }}" alt="Resíduos Eletrônicos">
+            <span>Eletrônicos</span>
+          </label>
+
+          <label class="item">
+            <input type="checkbox" name="pilhas_baterias">
+            <img src="{{ url_for('static', filename='assets/pilhas_baterias.png') }}" alt="Pilhas e Baterias">
+            <span>Pilhas e Baterias</span>
+          </label>
+
+          <label class="item">
+            <input type="checkbox" name="oleo_cozinha">
+            <img src="{{ url_for('static', filename='assets/oleo_de_cozinha.png') }}" alt="Óleo de Cozinha">
+            <span>Óleo de Cozinha</span>
+          </label>
+
+          <label class="item">
+            <input type="checkbox" name="lampadas">
+            <img src="{{ url_for('static', filename='assets/lampadas.png') }}" alt="Lâmpadas">
+            <span>Lâmpadas</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Botão para submeter o formulário -->
+      <button class="button-submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <!-- Modal de sucesso após cadastro -->
+  <div id="success-modal" class="modal hidden">
+    <div class="modal-content">
+      <img src="../static/assets/check.png" alt="Check" />
+      <p>Cadastrado com sucesso!</p>
+    </div>
+  </div>
+</body>
+</html>

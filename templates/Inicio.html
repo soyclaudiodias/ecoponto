@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPonto</title>
+
+  <!-- Ícone da aba do navegador -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/logo2.png') }}">
+
+  <!-- Estilos CSS da página -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/Inicio.css') }}" />
+
+  <!-- Fonte Roboto do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Aviso para dispositivos móveis -->
+  <div class="mobile-warning">
+    Esta aplicação está disponível apenas para telas maiores que 1024px.
+  </div>  
+
+  <!-- Cabeçalho com logo e botão de cadastro -->
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logotipo">
+    </a>
+
+    <div class="back">
+      <a class="back-link" href="{{ url_for('cadastrar_form') }}">
+        <img src="{{ url_for('static', filename='assets/login.png') }}" alt="Ícone de cadastro">
+        Cadastre um ponto de coleta
+      </a>
+    </div>
+  </header>
+
+  <!-- Conteúdo principal (hero section) -->
+  <main class="hero">
+    <!-- Texto do lado esquerdo -->
+    <div class="text-content">
+      <h1>Seu marketplace de coleta de resíduos.</h1>
+      <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</p>
+
+      <!-- Botão de busca de pontos -->
+      <a href="/consultar" class="search-btn">
+        <span class="icon">
+          <img src="{{ url_for('static', filename='assets/buscar.png') }}" alt="Busca"/>
+        </span>
+        <span class="text">Pesquisar pontos de coleta</span>
+      </a>      
+    </div>
+
+    <!-- Imagem ilustrativa do lado direito -->
+    <div class="image-content">
+      <img src="{{ url_for('static', filename='assets/background.png') }}" alt="Pessoas reciclando" />
+    </div>
+  </main>
+
+</body>
+</html>
